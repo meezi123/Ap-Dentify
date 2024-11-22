@@ -1,15 +1,13 @@
-// import { Children } from "react";
-
-const Button = ({ text, onClick }) => {
+const Button = ({ text = "Click Me", onClick = () => { }, className = "", style = {} }) => {
   return (
-    <>
-      <button style={{ borderRadius: '10px' }} className="py-[15px] px-[30px] bg-midBlue text-secondaryColor text-[16px]  font-semibold outline-none border-none " onClick={onClick}>
-        {text}
+    <button
+      className={`py-[15px] px-[30px] bg-midBlue text-secondaryColor text-[16px] font-semibold outline-none border-none rounded-[10px] ${className}`}
+      style={style}
+      onClick={onClick}
+    >
+      {text}
+    </button>
+  );
+};
 
-      </button>
-
-    </>
-  )
-
-}
 export default Button;
