@@ -35,13 +35,14 @@ function Section1() {
           </div>
           <div className="w-[50%] h-full flex justify-center items-center">
             <div className="flex relative flex-col">
-              <Image src={outerc} />
-              <Image className="absolute top-16 left-14 -z-20" src={innerc} />
+              <Image src={outerc} className="-z-20" alt='circle' />
+              <Image className="absolute top-16 left-14 -z-20" src={innerc} alt='circle' />
               <Image
                 className="absolute  right-14 -z-10"
                 src={mainImage}
                 width={680}
                 height={680}
+                alt='circle'
                 style={{
                   filter: "drop-shadow(2px 2px 20px  rgba(0, 0, 0, 0.08))",
                 }}
@@ -86,7 +87,7 @@ function Section1() {
                 Learn more
               </p>
               <span>
-                <Image src={rightarrow} />
+                <Image src={rightarrow} alt="arrow" />
               </span>
             </div>
           </div>
