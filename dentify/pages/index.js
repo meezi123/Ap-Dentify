@@ -7,7 +7,7 @@ const index = () => {
   return (
     <>
       <div className="w-full px-16 py-10">
-        <Navbar />
+        {/* <Navbar /> */}
         <Section1 />
         <Section2 />
         <Section3 />
