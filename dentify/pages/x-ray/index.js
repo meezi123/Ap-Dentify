@@ -18,6 +18,7 @@ function index() {
   return (
     <>
       <div className="w-full px-16 py-10">
+        {/* <Navbar /> */}
         <Navbar />
         <div className="flex flex-col py-10 space-y-5">
           <h1 className="text-[48px] font-semibold text-center">
@@ -146,6 +147,7 @@ function index() {
             </div>
           </div>
         </div>
+       
       </div>
     </>
   );
