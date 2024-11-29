@@ -1,4 +1,5 @@
 import Login from "@/react-components/Login";
+import SignUpForm from "@/react-components/SignUp";
 
 export default function displayLogin()
 {
@@ -6,6 +7,7 @@ export default function displayLogin()
     return(
         <>
         <Login/>
+        {/* <SignUpForm></SignUpForm> */}
         </>
     );
 }
