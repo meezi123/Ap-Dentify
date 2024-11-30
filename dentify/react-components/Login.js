@@ -1,13 +1,28 @@
 import { useRef } from "react";
 import styles from "./Login.module.css";
 import { signIn } from "next-auth/react";
-
-function loginUser(){
-  //api call
-}
+import { getSession } from "next-auth/react";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 
 const Login = () => {
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const checkSession = async () => {
+      const session = await getSession();
+      if (session) {
+        // If the user is already logged in, redirect to another page
+        router.push('/'); // Redirect to home page 
+      }
+    };
+
+    checkSession();
+  }, [router]);
+
+
   const emailRef = useRef()
   const passwordRef = useRef()
 
@@ -29,10 +44,10 @@ const Login = () => {
       alert(result.error);
     } else {
       alert("Login successful!");
-      window.location.href = "/x-ray"; // Redirect to dashboard or another protected route
+      window.location.href = "/"; 
     }
   
-    //login input handle + navigation
+    
   }
   return (
     <div className={styles.loginContainer}>

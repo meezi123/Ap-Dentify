@@ -1,15 +1,34 @@
 import { useRef } from "react";
 import styles from "./SignUp.module.css";
+import { getSession } from "next-auth/react";
 
 function createUser(email, password){
-  fetch ('/api/signUp',{
+   fetch ('/api/signUp',{
     method: 'POST',
     body:JSON.stringify({email, password}),
     headers:{
       'Content-Type':'application/json'
     }
-  }).then(res=>res.json()).then(d=>console.log(d)).catch((err) => console.error("Error:", err))
-
+  }).then(res => {
+      if (!res.ok) {
+        // If status code is not in the 200-299 range, throw an error
+        return res.json().then(errorData => {
+          throw new Error(errorData.message);
+        });
+      }
+      return res.json(); // Parse JSON for successful response
+    })
+    .then(data => {
+      // Handle success
+      console.log(data.message);
+      alert(data.message); 
+      window.location.href = "/"
+    })
+    .catch(err => {
+      // Handle errors
+      console.error(err.message);
+      alert(err.message); // or show an error notification
+    });
 }
 
 
@@ -24,7 +43,6 @@ const SignUpForm = () => {
     const email = emailRef.current.value
     const password = passwordRef.current.value
     createUser(email, password)
-  
   }
 
   return (
