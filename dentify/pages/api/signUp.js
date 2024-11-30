@@ -16,7 +16,6 @@ export default async function handler(req, res) {
           } else {
             res.status(400).json({ message: 'Signup failed. Please try again.' });
           }
-        // res.status(201).json({message:'Successfully Signed Up'})
     }
     
 }
