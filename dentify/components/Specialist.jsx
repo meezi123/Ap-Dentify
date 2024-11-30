@@ -6,18 +6,17 @@ function Specialist({ arr }) {
     <div
       className="w-[310px] h-[350px] bg-lightBlue rounded-[10px] relative flex flex-col justify-between py-5 items-center"
     >
-
+      {/* Background Image */}
       <Image
         src={arr.img}
-        className="absolute rounded-[10px] z-0"
+        className="absolute rounded-[10px] z-0" // Set image behind the gradient
         layout="fill"
         objectFit="cover"
-        alt="img"
       />
 
       {/* Gradient Overlay */}
       <div className="w-full  z-10 flex justify-end items-center px-6">
-        <Image src={linkedIn} alt='linkdin' />
+        <Image src={linkedIn} />
 
 
       </div>

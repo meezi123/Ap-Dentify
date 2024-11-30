@@ -1,7 +1,6 @@
 import Image from 'next/image'; // Import the Image component
 import Button from "./Button";
 import logo from '@/public/logo.png';
-import Link from 'next/link';
 import user from '@/public/user.png';
 const Navbar = () => {
   const booking = () => {
@@ -12,20 +11,20 @@ const Navbar = () => {
     <>
       <nav style={{ borderRadius: '8px' }} className="w-full h-[90px] bg-lightBlue flex space-x-0 items-center justify-between ">
         <div style={{ borderRadius: '8px' }} className="h-full w-[162px] items-center justify-center px-1 ">
-
+          {/* Use the Next.js Image component */}
           <Image
             src={logo}
             alt="Logo"
             className="object-contain"
-            width={162}
-            height={90}
-            priority={true}
+            width={162} // Explicitly set the width
+            height={90} // Explicitly set the height
+            priority={true} // Optional: ensures the image is loaded ASAP
           />
         </div>
         <ul className='flex space-x-3 text-darkBlue font-sans'>
-          <Link href='/' className='text-[16px] font-medium'>Home</Link>
-          <Link href='/x-ray' className='text-[16px] font-medium'>X-Ray</Link>
-          <Link href='/about' className='text-[16px] font-medium'>About</Link>
+          <li>Home</li>
+          <li>Services</li>
+          <li>About</li>
         </ul>
         <div className='flex items-center space-x-6 w-[280px] '>
           <div className="h-full  items-center justify-center ">
@@ -33,8 +32,9 @@ const Navbar = () => {
               src={user}
               alt="Logo"
               className="object-contain"
-
-              priority={true}
+              // width={162} // Explicitly set the width
+              // height={90} // Explicitly set the height
+              priority={true} // Optional: ensures the image is loaded ASAP
             />
           </div>
           <Button text="Book Now" onClick={booking} />
