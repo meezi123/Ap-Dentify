@@ -80,7 +80,7 @@ const Login = () => {
             Log in
           </button>
           <div className={styles.createAccount}>
-            Not a member yet? <a href="#">Create an account</a>
+            Not a member yet? <a href="/SignUp" className={styles.link}>Create an account</a>
           </div>
         </div>
       </div>

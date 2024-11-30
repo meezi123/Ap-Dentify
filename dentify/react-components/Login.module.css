@@ -69,4 +69,9 @@
     margin-top: 10px;
     text-align: center;
   }
+
+  .link {
+    color: #007bff;
+    text-decoration: none;
+  }
   

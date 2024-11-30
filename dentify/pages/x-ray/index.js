@@ -1,10 +1,34 @@
-import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import upload from "@/public/cloud.png";
 import dr from "@/public/image10.png";
 import Button from "@/components/Button";
 import { useState } from "react";
+import { getSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import PopUp from "@/react-components/PopUp";
+
+
 function index() {
+  const [showPopup, setShowPopup] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const checkSession = async () => {
+      const session = await getSession();
+      if (!session) {
+        setShowPopup(true); 
+      }
+    };
+
+    checkSession();
+  }, [router]);
+
+  const btnHandle = () => {
+    setShowPopup(false); 
+    router.push("/Login"); 
+  };
+ 
   const [xRayForm, setXRayForm] = useState({
     fname: "",
     lname: "",
@@ -17,6 +41,13 @@ function index() {
   };
   return (
     <>
+    {showPopup && (
+        <PopUp
+          text="Login to Upload X-Ray"
+          buttonText="Login"
+          onClose={btnHandle}
+        />
+      )}
       <div className="w-full px-16 py-10">
         <div className="flex flex-col py-10 space-y-5">
           <h1 className="text-[48px] font-semibold text-center">

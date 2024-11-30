@@ -111,7 +111,7 @@ const SignUpForm = () => {
             </button>
           </form>
           <p className={styles.signinText}>
-            Have an account? <a href="/signin" className={styles.link}>Sign In</a>
+            Have an account? <a href="/Login" className={styles.link}>Sign In</a>
           </p>
         </div>
       </div>
