@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import loginImage from '@/public/image10.png';
 import Image from "next/image";
+import { useUser } from '../context/UserContext';
+import { SUPPORTED_TEST_RUNNERS_LIST } from "next/dist/cli/next-test";
 
 function createUser(email, password){
    fetch ('/api/signUp',{
@@ -61,6 +63,8 @@ const SignUpForm = () => {
   
     const email = emailRef.current.value
     const password = passwordRef.current.value
+    const name = nameRef.current.value
+    setUser(name);
     createUser(email, password)
   }
 
@@ -79,7 +83,7 @@ const SignUpForm = () => {
             <div className={styles.inputGroup}>
               <input
                 type="text"
-                placeholder="Type your name"
+                placeholder="Type your full name"
                 className={styles.input}
                 ref={nameRef}
               />

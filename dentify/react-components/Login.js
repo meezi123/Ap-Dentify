@@ -6,11 +6,12 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import loginImage from '@/public/image10.png';
 import Image from "next/image";
+import { useUser } from '../context/UserContext';
 
 
 const Login = () => {
-
   const router = useRouter();
+  const { setUser } = useUser();
 
   useEffect(() => {
     const checkSession = async () => {
@@ -24,23 +25,25 @@ const Login = () => {
     checkSession();
   }, [router]);
 
-
   const emailRef = useRef()
   const passwordRef = useRef()
+  const nameRef = useRef()
 
   const handler = async(e) => {
     e.preventDefault()
   
     const email = emailRef.current.value
     const password =  passwordRef.current.value
+    const name = nameRef.current.value
 
-    console.log("Email:", email, "Password:", password); 
     const result = await signIn("credentials",{
       redirect: false,
       email: email,
       password: password,
     })
     console.log("SignIn result:", result);
+
+    setUser(name);
   
     if (result.error) {
       alert(result.error);
@@ -56,6 +59,12 @@ const Login = () => {
       <div className={styles.leftSection}>
         <div className={styles.loginContainer}>
           <h1 className={styles.title}>Welcome Back</h1>
+          <input
+            type="fullname"
+            placeholder="Enter your Full Name"
+            className={styles.loginInput}
+            ref={nameRef}
+          />
           <input
             type="email"
             placeholder="Enter your Email"

@@ -2,13 +2,15 @@ import Image from 'next/image';
 import Button from "./Button";
 import logo from '@/public/logo.png';
 import Link from 'next/link';
-import user from '@/public/user.png';
+import userImage from '@/public/user.png';
+import { useUser } from '../context/UserContext';
 
 
 const Navbar = () => {
+  const { user } = useUser();
+
   const booking = () => {
     alert("Thankyou For booking !")
-
   }
   return (
     <>
@@ -30,9 +32,9 @@ const Navbar = () => {
         </ul>
         <div className='flex items-center space-x-6 w-[280px] '>
          <div className="h-full  items-center justify-center ">
-          <Link href="/User/1">
+          <Link href="/User/${user.name}">
             <Image
-              src={user}
+              src={userImage}
               alt="user"
               className="object-contain"
               priority={true}
