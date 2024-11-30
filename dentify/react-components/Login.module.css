@@ -1,11 +1,38 @@
-.loginContainer {
+   .container {
     display: flex;
-    flex-direction: column;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  
+  .leftSection {
+    flex: 1;
+    display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    background-color: #f9f9f9;
-    font-family: Arial, sans-serif;
+    background-color: #f9f9f9; 
+  }
+  
+  .rightSection {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #5c9de1; 
+  }
+  
+  .rightSection img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
+  
+  .loginContainer {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   .title {
@@ -14,42 +41,8 @@
     margin-bottom: 20px;
   }
   
-  .googleLoginBtn {
-    width: 100%;
-    max-width: 300px;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-    background-color: #ffffff;
-    color: #555555;
-    cursor: pointer;
-  }
-  
-  .googleLoginBtn:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .separator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px 0;
-    color: #888888;
-  }
-  
-  .separator::before,
-  .separator::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: #cccccc;
-    margin: 0 10px;
-  }
-  
   .loginInput {
     width: 100%;
-    max-width: 300px;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #cccccc;
@@ -59,14 +52,11 @@
   .optionsContainer {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    max-width: 300px;
     margin-bottom: 20px;
   }
   
   .loginBtn {
     width: 100%;
-    max-width: 300px;
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -77,5 +67,6 @@
   
   .createAccount {
     margin-top: 10px;
+    text-align: center;
   }
   

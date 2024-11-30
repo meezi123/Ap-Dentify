@@ -1,6 +1,10 @@
 import { useRef } from "react";
 import styles from "./SignUp.module.css";
 import { getSession } from "next-auth/react";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import loginImage from '@/public/image10.png';
+import Image from "next/image";
 
 function createUser(email, password){
    fetch ('/api/signUp',{
@@ -33,6 +37,21 @@ function createUser(email, password){
 
 
 const SignUpForm = () => {
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const checkSession = async () => {
+      const session = await getSession();
+      if (session) {
+        // If the user is already logged in, redirect to another page
+        router.push('/'); // Redirect to home page 
+      }
+    };
+
+    checkSession();
+  }, [router]);
+  
   const nameRef = useRef()
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -46,50 +65,58 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Create An Account</h1>
-      <button className={styles.googleButton}>Sign up with Google</button>
-      <div className={styles.divider}>Or</div>
-      <form className={styles.form} onSubmit={handler}>
-        <div className={styles.inputGroup}>
-          <input
-            type="text"
-            placeholder="Type your name"
-            className={styles.input}
-            ref={nameRef}
-          />
+    <div className={styles.signupContainer}>
+      {/* Left Section: Image */}
+      <div className={styles.leftSection}>
+      <Image src={loginImage} alt="Login Illustration" />
+      </div>
+
+      {/* Right Section: Signup Form */}
+      <div className={styles.rightSection}>
+        <div className={styles.container}>
+          <h1 className={styles.title}>Create An Account</h1>
+          <form className={styles.form} onSubmit={handler}>
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                placeholder="Type your name"
+                className={styles.input}
+                ref={nameRef}
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <input
+                type="email"
+                placeholder="Enter your Email"
+                className={styles.input}
+                ref={emailRef}
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <input
+                type="password"
+                placeholder="Password"
+                className={styles.input}
+                ref={passwordRef}
+              />
+            </div>
+            <div className={styles.checkboxGroup}>
+              <input type="checkbox" id="terms" className={styles.checkbox} />
+              <label htmlFor="terms" className={styles.checkboxLabel}>
+                I agree with Terms and Privacy
+              </label>
+            </div>
+            <button type="submit" className={styles.signupButton}>
+              Sign up
+            </button>
+          </form>
+          <p className={styles.signinText}>
+            Have an account? <a href="/signin" className={styles.link}>Sign In</a>
+          </p>
         </div>
-        <div className={styles.inputGroup}>
-          <input
-            type="email"
-            placeholder="Enter your Email"
-            className={styles.input}
-            ref={emailRef}
-          />
-        </div>
-        <div className={styles.inputGroup}>
-          <input
-            type="password"
-            placeholder="Password"
-            className={styles.input}
-            ref={passwordRef}
-          />
-        </div>
-        <div className={styles.checkboxGroup}>
-          <input type="checkbox" id="terms" className={styles.checkbox} />
-          <label htmlFor="terms" className={styles.checkboxLabel}>
-            I agree with Terms and Privacy
-          </label>
-        </div>
-        <button type="submit" className={styles.signupButton}>
-          Sign up
-        </button>
-      </form>
-      <p className={styles.signinText}>
-        Have an account? <a href="/signin" className={styles.link}>Sign In</a>
-      </p>
+      </div>
     </div>
-  );
+  )
 };
 
 export default SignUpForm;
