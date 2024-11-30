@@ -1,13 +1,30 @@
 import { useRef } from "react";
 import styles from "./Login.module.css";
 import { signIn } from "next-auth/react";
-
-function loginUser(){
-  //api call
-}
+import { getSession } from "next-auth/react";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import loginImage from '@/public/image10.png';
+import Image from "next/image";
 
 
 const Login = () => {
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const checkSession = async () => {
+      const session = await getSession();
+      if (session) {
+        // If the user is already logged in, redirect to another page
+        router.push('/'); // Redirect to home page 
+      }
+    };
+
+    checkSession();
+  }, [router]);
+
+
   const emailRef = useRef()
   const passwordRef = useRef()
 
@@ -29,42 +46,48 @@ const Login = () => {
       alert(result.error);
     } else {
       alert("Login successful!");
-      window.location.href = "/x-ray"; // Redirect to dashboard or another protected route
+      window.location.href = "/"; 
     }
   
-    //login input handle + navigation
   }
   return (
-    <div className={styles.loginContainer}>
-      <h1 className={styles.title}>Welcome Back</h1>
-      <button className={styles.googleLoginBtn}>Log in with Google</button>
-      <div className={styles.separator}>Or</div>
-      <form onSubmit={handler}>
-      <input
-        type="email"
-        placeholder="Enter your Email"
-        className={styles.loginInput}
-        ref={emailRef}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        className={styles.loginInput}
-        ref={passwordRef}
-      />
-      <div className={styles.optionsContainer}>
-        <label>
-          <input type="checkbox" />
-          Remember Me
-        </label>
-        <a href="#" className={styles.forgotPassword}>
-          Forgot Password?
-        </a>
+    <div className={styles.container}>
+      {/* Left Section: Login Form */}
+      <div className={styles.leftSection}>
+        <div className={styles.loginContainer}>
+          <h1 className={styles.title}>Welcome Back</h1>
+          <input
+            type="email"
+            placeholder="Enter your Email"
+            className={styles.loginInput}
+            ref={emailRef}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className={styles.loginInput}
+            ref={passwordRef}
+          />
+          <div className={styles.optionsContainer}>
+            <label>
+              <input type="checkbox" /> Remember Me
+            </label>
+            <a href="#" className={styles.forgotPassword}>
+              Forgot Password?
+            </a>
+          </div>
+          <button onClick={handler} className={styles.loginBtn}>
+            Log in
+          </button>
+          <div className={styles.createAccount}>
+            Not a member yet? <a href="/SignUp" className={styles.link}>Create an account</a>
+          </div>
+        </div>
       </div>
-      <button type="submit" className={styles.loginBtn}>Log in</button>
-      </form>
-      <div className={styles.createAccount}>
-        Not a member yet? <a href="#">Create an account</a>
+
+      {/* Right Section: Image */}
+      <div className={styles.rightSection}>
+        <Image src={loginImage} alt="Login Illustration" />
       </div>
     </div>
   );
