@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import loginImage from '@/public/image10.png';
 import Image from "next/image";
 import { useUser } from '../context/UserContext';
-import { SUPPORTED_TEST_RUNNERS_LIST } from "next/dist/cli/next-test";
 
 function createUser(email, password){
    fetch ('/api/signUp',{
@@ -41,6 +40,7 @@ function createUser(email, password){
 const SignUpForm = () => {
 
   const router = useRouter();
+  const { setUser } = useUser();
 
   useEffect(() => {
     const checkSession = async () => {
@@ -64,6 +64,7 @@ const SignUpForm = () => {
     const email = emailRef.current.value
     const password = passwordRef.current.value
     const name = nameRef.current.value
+    
     setUser(name);
     createUser(email, password)
   }

@@ -32,7 +32,7 @@ const Navbar = () => {
         </ul>
         <div className='flex items-center space-x-6 w-[280px] '>
          <div className="h-full  items-center justify-center ">
-          <Link href="/User/${user.name}">
+          <Link href={`/User/${user}`}>
             <Image
               src={userImage}
               alt="user"

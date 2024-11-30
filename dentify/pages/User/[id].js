@@ -1,9 +1,19 @@
-import React from 'react';
-import UserProfile from './UserProfile';
+import UserProfile from "@/react-components/UserProfile";
+import { useUser } from '../../context/UserContext';
+import { useState } from "react";
+import { useEffect } from "react";
 
-export default function UserProfilePage ({ user }) {
+export default function UserProfilePage () {
+    const { user } = useUser();
+    const [userDetails, setUser] = useState([])
+    useEffect (()=>{
+        fetch(`/api/user?name=${encodeURIComponent(user)}`)
+        .then((res) => res.json())
+        .then((data) => setUser(data.messageArr));
+    },[])
+    
+
   return (
-    <UserProfile />
+    <UserProfile User={userDetails}/>
   );
 };
-
