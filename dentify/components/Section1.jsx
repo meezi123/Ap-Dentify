@@ -32,9 +32,6 @@ function Section1() {
               Bringing you closer to better dental health with smart tools and
               expert care.
             </p>
-            <div className="relative top-5">
-              <Button text="Book an appointment" onClick={booking} />
-            </div>
           </div>
           <div className="w-[50%] h-full flex justify-center items-center">
             <div className="flex relative flex-col">
