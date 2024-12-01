@@ -4,7 +4,7 @@ import dr from "@/public/image10.png";
 import Button from "@/components/Button";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 import PopUp from "@/react-components/PopUp";
 

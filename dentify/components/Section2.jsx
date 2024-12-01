@@ -2,6 +2,8 @@ import Image from "next/image";
 import phone from "@/public/phone.png";
 import rect from "@/public/Rectangle.png";
 import Button from "./Button";
+import { useState } from "react";
+
 
 function Section2() {
   const [phone, setPhone] = useState("");
