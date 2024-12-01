@@ -1,12 +1,15 @@
 import Image from "next/image";
 import linkedIn from '@/public/LinkedIn.png'
+import { useRouter } from "next/router";
+import Link from "next/link"
+
+
 function Specialist({ arr }) {
 
   return (
     <div
-      className="w-[310px] h-[350px] bg-lightBlue rounded-[10px] relative flex flex-col justify-between py-5 items-center"
-    >
-
+    className="w-[310px] h-[350px] bg-lightBlue rounded-[10px] relative flex flex-col justify-between py-5 items-center transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-lg hover:bg-lightBlue/80">
+      <Link href={`/specialist/${arr.id}`}>
       <Image
         src={arr.img}
         className="absolute rounded-[10px] z-0"
@@ -33,7 +36,7 @@ function Specialist({ arr }) {
 
       </div>
 
-
+      </Link>
 
     </div>
   );

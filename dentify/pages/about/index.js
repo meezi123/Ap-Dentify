@@ -5,7 +5,7 @@ export default function displayAbout(props)
     
     return(
         <>
-        <AboutUs data={props.arr}/>
+        <AboutUs titleText="About Us" data={props.arr}/>
         </>
     );
 }

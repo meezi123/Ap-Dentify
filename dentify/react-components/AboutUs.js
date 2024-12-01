@@ -1,10 +1,9 @@
-
 import styles from './AboutUs.module.css';
 
-export default function AboutUs({data}) {
+export default function AboutUs({titleText,data}) {
   return (
     <div className={styles.container}>
-      <h1 className={styles.heading}>About Us</h1>
+      <h1 className={styles.heading}>{titleText}</h1>
       { data.map (item => <p>{item}</p>)}
       {/* <p className={styles.paragraph}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
