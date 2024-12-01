@@ -7,10 +7,10 @@ export default function App({ Component, pageProps }) {
   return(
     <>
     <SessionProvider>
-    <UserProvider>
-    <Navbar/>
-    <Component {...pageProps} />;
-    </UserProvider>
+      <UserProvider>
+        <Navbar/>
+        <Component {...pageProps} />
+      </UserProvider>
     </SessionProvider>
     </>
   );

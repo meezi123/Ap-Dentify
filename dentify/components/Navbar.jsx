@@ -4,10 +4,15 @@ import logo from '@/public/logo.png';
 import Link from 'next/link';
 import userImage from '@/public/user.png';
 import { useUser } from '../context/UserContext';
+import { useEffect } from 'react';
 
 
 const Navbar = () => {
   const { user } = useUser();
+
+  useEffect(() => {
+    console.log("Navbar detected user context change:", user);
+  }, [user]);
 
   const booking = () => {
     alert("Thankyou For booking !")
@@ -32,7 +37,7 @@ const Navbar = () => {
         </ul>
         <div className='flex items-center space-x-6 w-[280px] '>
          <div className="h-full  items-center justify-center ">
-          <Link href={`/User/${user}`}>
+          <Link href={`/User/${user || "default"}`}>
             <Image
               src={userImage}
               alt="user"

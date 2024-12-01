@@ -49,7 +49,7 @@ const Login = () => {
       alert(result.error);
     } else {
       alert("Login successful!");
-      window.location.href = "/"; 
+      router.push('/'); 
     }
   
   }

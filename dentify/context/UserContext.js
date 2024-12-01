@@ -12,8 +12,13 @@ export const useUser = () => {
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  const updateUser = (newUser) => {
+    console.log("Updating user context:", newUser); // Debug log
+    setUser(newUser); // Updates the state correctly
+  };
+
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, updateUser }}>
       {children}
     </UserContext.Provider>
   );

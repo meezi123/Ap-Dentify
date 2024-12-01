@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import styles from "./UserProfileForm.module.css";
-import { useRouter } from "next/router";
 import { useRef } from "react";
+import { useUser } from '../context/UserContext';
+import { useRouter } from "next/router";
 
 const UserProfileForm = () => {
-  const router = useRouter()
+  const { user, updateUser } = useUser();
+  const router = useRouter();
 
   const name = useRef()
   const contactNum = useRef()
@@ -21,15 +23,24 @@ const UserProfileForm = () => {
     const address = addr.current.value
     const g = gender.current.value
 
+    if (!n || !contact || !dob || !address || !g) {
+      alert("Please fill out all fields before submitting.");
+      return;
+    }
+
+    updateUser(n);
+
     fetch ('/api/user',{
       method: 'POST',
       body:JSON.stringify({dob, n, contact, address, g}),
       headers:{
         'Content-Type':'application/json'
       }
-    }).then(res => res.json()).then(data => {
+    }).then(res => res.json())
+      .then(data => {
         alert(data.message); 
-        window.location.href = "/"
+       // window.location.href = "/"
+       router.push("/")
       })
       .catch(err => {
         console.error(err.message);

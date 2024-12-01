@@ -27,7 +27,7 @@ function createUser(email, password){
       // Handle success
       console.log(data.message);
       alert(data.message); 
-      window.location.href = "/"
+      window.location.href = "/UserForm"
     })
     .catch(err => {
       // Handle errors
@@ -40,7 +40,7 @@ function createUser(email, password){
 const SignUpForm = () => {
 
   const router = useRouter();
-  const { setUser } = useUser();
+  const { updateUser } = useUser();
 
   useEffect(() => {
     const checkSession = async () => {
@@ -65,7 +65,7 @@ const SignUpForm = () => {
     const password = passwordRef.current.value
     const name = nameRef.current.value
     
-    setUser(name);
+    updateUser(name);
     createUser(email, password)
   }
 

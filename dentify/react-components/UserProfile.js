@@ -2,22 +2,26 @@ import React from 'react';
 import styles from './UserProfile.module.css';
 
 const UserProfile = ({ User }) => {
+  if (!User) {
+    return <div>Loading...</div>; 
+  }
+
   return (
     <div className={styles.profileContainer}>
       <div className={styles.profileCard}>
         <div className={styles.profileHeader}>
-          <h1 className={styles.userName}>{User.name}</h1>
+          <h1 className={styles.userName}>{User.userName}</h1>
           <p className={styles.userEmail}>{User.email}</p>
         </div>
         <div className={styles.profileDetails}>
           <h2 className={styles.detailsHeading}>Details</h2>
           <div className={styles.detailItem}>
             <span className={styles.detailLabel}>Contact Number:</span>
-            <span>{User.contactNumber}</span>
+            <span>{User.contact}</span>
           </div>
           <div className={styles.detailItem}>
             <span className={styles.detailLabel}>Date of Birth:</span>
-            <span>{User.dob}</span>
+            <span>{User.dateOfBirth}</span>
           </div>
           <div className={styles.detailItem}>
             <span className={styles.detailLabel}>Address:</span>
