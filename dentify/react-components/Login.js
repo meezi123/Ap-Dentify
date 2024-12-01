@@ -19,6 +19,7 @@ const Login = () => {
       if (session) {
         // If the user is already logged in, redirect to another page
         router.push('/'); // Redirect to home page 
+        //window.location.href('/')
       }
     };
 
