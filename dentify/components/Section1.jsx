@@ -7,7 +7,10 @@ import Teeth from "./Teeth";
 import teeth2 from "@/public/teeth2.png";
 import rightarrow from "@/public/rightarrow.png";
 import teeth from "@/public/vector.png";
+import { useRouter } from "next/router";
 function Section1() {
+
+  const router = useRouter();
   const booking = () => {
     alert("Thankyou for booking an Appointment");
   };
@@ -61,7 +64,8 @@ function Section1() {
         >
           <div
             style={{ borderRadius: "10px" }}
-            className="w-[365px]  bg-secondaryColor flex flex-col space-y-5 p-5"
+            className="w-[365px]  bg-secondaryColor flex flex-col space-y-5 p-5 cursor-pointer"
+            onClick={() => {router.push('/caries')}}
           >
             <div className="flex flex-col  items-center">
               <Teeth className="h-[70px] w-[70px] i " img={teeth2} />

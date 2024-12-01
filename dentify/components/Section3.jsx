@@ -1,38 +1,8 @@
 import SpecialistList from "./SpecialistList"
-import dr1 from '@/public/image6.png'
-import dr2 from '@/public/image7.png'
-import dr3 from '@/public/image8.png'
-import dr4 from '@/public/image9.png'
-import rarrow from '@/public/RArrow.png';
-import larrow from '@/public/LArrow.png';
-import Image from "next/image"
+import {returnArr} from '@/dummy-data/data'
+
 function Section3() {
-  const specialistArray = [{
-    img: dr1,
-    name: "Jim Carry",
-    designation: "Orthodontist"
-  },
-  {
-    img: dr2,
-    name: "Wade Warren",
-    designation: "Endodontist."
-  },
-  {
-    img: dr3,
-    name: "Jenny Wilson",
-    designation: "Periodontist."
-  },
-  {
-    img: dr4,
-    name: "Jacob Jones",
-    designation: "Pediatric Dentist."
-  },
-  {
-    img: dr2,
-    name: "Wade Warren",
-    designation: "Endodontist."
-  },
-  ]
+  const specialistArray = returnArr();
   return (
     <>
       <div className="w-full h-[760px]">
@@ -50,7 +20,7 @@ function Section3() {
           </div>
 
           <SpecialistList arr={specialistArray} />
-          <div className="flex space-x-2">
+          {/* <div className="flex space-x-2">
             <div className=" bg-secondaryColor w-[100px] h-[50px] flex justify-center items-center " >
               <Image src={rarrow} alt='arrow' />
 
@@ -60,7 +30,7 @@ function Section3() {
             </div>
 
 
-          </div>
+          </div> */}
 
         </div>
 

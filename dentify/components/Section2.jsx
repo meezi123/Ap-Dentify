@@ -9,7 +9,6 @@ function Section2() {
   const submit = () => {
     console.log(phone);
     setPhone("")
-
   }
   return (
     <div className="w-full h-[700px] flex justify-center items-center">
