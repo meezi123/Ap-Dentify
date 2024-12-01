@@ -1,8 +1,7 @@
 import Image from "next/image";
-import Phone from "@/public/phone.png";
+import phone from "@/public/phone.png";
 import rect from "@/public/Rectangle.png";
 import Button from "./Button";
-import { useState } from "react";
 
 function Section2() {
   const [phone, setPhone] = useState("");
@@ -29,41 +28,39 @@ function Section2() {
             anything and book yourself.
           </p>
           <div className="relative w-[460px] flex items-center -space-x-1 ">
-
+            {/* Input Field */}
             <input
               type="text"
               placeholder="Enter your Phone Number"
-              onChange={(e) => setPhone(e.target.value)}
               className="w-[340px] h-full pl-14 py-[15px] border  focus:outline-none"
               style={{
-                color: "rgba(0, 0, 0, 1)",
-                "::placeholder": { color: "rgba(207, 207, 207, 1)" },
+                color: "rgba(0, 0, 0, 1)", // Input text color
+                "::placeholder": { color: "rgba(207, 207, 207, 1)" }, // Placeholder color (not supported directly in inline styles)
                 border: '1px solid rgba(206,206,206,1)',
                 borderTopLeftRadius: '10px',
                 borderBottomLeftRadius: '10px'
               }}
             />
-
+            {/* Phone Icon */}
             <Image
-              src={Phone}
+              src={phone}
               alt="Phone"
 
               className="absolute top-1/2 left-4 transform -translate-y-1/2"
             />
             <div>
-              <Button text='Submit' onClick={submit}
-                style={{
-                  borderTopLeftRadius: '0px',
-                  borderBottomLeftRadius: '0px'
+              <Button text='Submit' style={{
+                borderTopLeftRadius: '0px',
+                borderBottomLeftRadius: '0px'
 
-                }} />
+              }} />
             </div>
           </div>
         </div>
         <div className="w-[50%] h-full flex  items-center justify-center  relative">
           <div className="w-full h-full flex flex-col items-center justify-end ">
             <div className="z-10">
-              <Image src={rect} alt="rect" />
+              <Image src={rect} />
             </div>
             <div className="w-[415px] h-[362px] absolute top-0 right-24 rounded-[10px] " style={{
               background:
