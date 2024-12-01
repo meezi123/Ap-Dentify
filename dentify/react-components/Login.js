@@ -11,7 +11,7 @@ import { useUser } from '../context/UserContext';
 
 const Login = () => {
   const router = useRouter();
-  const { setUser } = useUser();
+  const { updateUser } = useUser();
 
   useEffect(() => {
     const checkSession = async () => {
@@ -23,7 +23,7 @@ const Login = () => {
     };
 
     checkSession();
-  }, [router]);
+  }, []);
 
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -43,7 +43,7 @@ const Login = () => {
     })
     console.log("SignIn result:", result);
 
-    setUser(name);
+    updateUser(name);
   
     if (result.error) {
       alert(result.error);

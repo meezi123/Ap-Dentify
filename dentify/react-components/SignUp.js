@@ -3,9 +3,12 @@ import styles from "./SignUp.module.css";
 import { getSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import loginImage from '@/public/image10.png';
 import Image from "next/image";
 import { useUser } from '../context/UserContext';
+import PopUp from "@/react-components/PopUp";
+
 
 function createUser(email, password){
    fetch ('/api/signUp',{
@@ -36,9 +39,9 @@ function createUser(email, password){
     });
 }
 
-
 const SignUpForm = () => {
 
+  const [showPopup, setShowPopup] = useState(false);
   const router = useRouter();
   const { updateUser } = useUser();
 
@@ -52,11 +55,21 @@ const SignUpForm = () => {
     };
 
     checkSession();
-  }, [router]);
+  }, []);
+
+  const popupHandler = (e) => {
+    e.preventDefault()
+    setShowPopup(true)
+  }
+
+  const btnHandle = () => {
+    setShowPopup(false); 
+  };
   
   const nameRef = useRef()
   const emailRef = useRef()
   const passwordRef = useRef()
+  const termsRef = useRef()
 
   const handler = async(e) => {
     e.preventDefault()
@@ -64,12 +77,34 @@ const SignUpForm = () => {
     const email = emailRef.current.value
     const password = passwordRef.current.value
     const name = nameRef.current.value
-    
+    const terms = termsRef.current.value
+
     updateUser(name);
     createUser(email, password)
+
+    // if(email && password && name && terms) {
+    //   updateUser(name);
+    //   createUser(email, password)
+    // } else {
+    //   alert("Please fill out everything before submitting");
+    //   return;
+    // }
   }
 
   return (
+    <>
+    {showPopup && (
+        <PopUp
+          text="What is Lorem Ipsum?Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer
+          took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, 
+          but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s 
+          with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing 
+          software like Aldus PageMaker including versions of Lorem Ipsum."
+          buttonText="I agree"
+          onClose={btnHandle}
+        />
+      )}
     <div className={styles.signupContainer}>
       {/* Left Section: Image */}
       <div className={styles.leftSection}>
@@ -106,9 +141,9 @@ const SignUpForm = () => {
               />
             </div>
             <div className={styles.checkboxGroup}>
-              <input type="checkbox" id="terms" className={styles.checkbox} />
+              <input type="checkbox" id="terms" className={styles.checkbox} ref = {termsRef}/>
               <label htmlFor="terms" className={styles.checkboxLabel}>
-                I agree with Terms and Privacy
+                I agree with <button onClick={popupHandler} className={styles.link}>Terms and Privacy</button>
               </label>
             </div>
             <button type="submit" className={styles.signupButton}>
@@ -121,6 +156,7 @@ const SignUpForm = () => {
         </div>
       </div>
     </div>
+    </>
   )
 };
 
