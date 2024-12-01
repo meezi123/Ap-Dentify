@@ -57,9 +57,9 @@ const Navbar = () => {
         </div>
         {/* </div> */}
         <ul className='flex space-x-3 text-darkBlue font-sans'>
-          <li>Home</li>
-          <li>Services</li>
-          <li>About</li>
+          <Link href='/' className='text-[16px] font-medium'>Home</Link>
+          <Link href='/x-ray' className='text-[16px] font-medium'>X-Ray</Link>
+          <Link href='/about' className='text-[16px] font-medium'>About</Link>
         </ul>
         <div className='flex items-center space-x-6 w-[280px] '>
           <div className="h-full  items-center justify-center ">
